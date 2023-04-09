@@ -5,11 +5,12 @@ import { Box, Button, Card, CardContent, TextField, Typography } from '@mui/mate
 import { User } from './model/User';
 import AddQuest from './components/AddQuest';
 import EditUser from './components/EditUser';
+import ResolveQuest from './components/ResolveQuest';
 
 
 
 function App() {
-  const [users, setUsers] = useState<User[]>();
+  const [sortedUsers,setSortedUsers] = useState<User[]>();
   const [selectedUser, setSelectedUser] = useState<User>();
   const [uName, setUName] = useState<string>();
   const [uPass,setUPass] = useState<string>();
@@ -31,6 +32,10 @@ function App() {
   const logInUser = () => {
     axios.get('http://localhost:8080/quest/log?name='+lName+'&pass='+lPass)
     .then((response) => setSelectedUser(response.data));
+  }
+
+  function getSortedUsers() {
+    axios.get('http://localhost:8080/quest/ranking').then((response) => setSortedUsers(response.data));
   }
 
   const reloadUser = (id: number) => {
@@ -76,25 +81,32 @@ function App() {
             <Button onClick={()=>addNewUser()}>SAVE</Button>
           </CardContent>
         </Card>
+        <Card sx={{ overflow: "auto", margin: 3, width: 700, background: 'lightblue'  }}>
+          <Button sx={{margin: 1}} onClick={()=>getSortedUsers()}>CURRENT RANKINGS</Button>
+          {sortedUsers?.map(user=>
+          <Card sx={{margin: 1, cursor: "pointer"}}>
+              <Typography>{user.ranking} {user.fullName} </Typography>
+          </Card>
+        )}
+        </Card>
       </Box>}
       {selectedUser?.name != null && <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
           <Card sx={{ margin: 1, overflow: 'auto', background: 'lightblue', width: 900}}>
             <Typography sx={{ fontSize: 18 }}>Full Name: {selectedUser.fullName} </Typography>
             <Typography sx={{ fontSize: 14 }}>BADGE: {selectedUser.badge} </Typography>
             <Typography sx={{ fontSize: 14 }}>TOKENS: {selectedUser.tokens} </Typography>
-            <Button>RANKINGS LIST</Button>
-            <Button>RESOLVE QUEST</Button>
-            {/* <Button onClick={() =><AddQuest user={selectedUser}></AddQuest>}>ADD QUEST</Button> */}
-            {/* <Button>MODIFY USER</Button> */}
             <Button onClick={() => clearSelectedUser()}>LOG OUT</Button>
             <Button sx={{ color: "red" }} onClick={() => deleteUser(selectedUser.id)}>DELETE USER</Button>
           </Card>
           <Card sx={{ margin: 1, overflow: 'auto', background: 'lightblue', width: 750}}>
             <AddQuest  user={selectedUser} reloadUser={reloadedSelectedUser}></AddQuest>
           </Card>
+          <Card sx={{ margin: 1, overflow: 'auto', background: 'lightblue', width: 700}}>
+            <ResolveQuest user={selectedUser} reloadUser={reloadedSelectedUser}></ResolveQuest>
+          </Card>
           <Card sx={{ margin: 1, overflow: 'auto', background: 'lightblue', width: 1000}}>
             <EditUser user={selectedUser} reloadUser={reloadedSelectedUser}></EditUser>
-          </Card>
+          </Card> 
       </Box>}
     </Box>
   );

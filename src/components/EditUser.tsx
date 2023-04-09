@@ -16,7 +16,7 @@ const EditUser: FC<EditUserProps> = ({user, reloadUser}) => {
     const [uEmail, setUEmail]=useState<string>(user.email);
 
 const save = () => {
-    axios.patch("http://localhost:8080/quest/"+ user.id, { name: uName, pass: uPass, 
+    axios.patch('http://localhost:8080/quest/'+ user.id, { name: uName, pass: uPass, 
     fullName: uFullName, email: uEmail})
     .then(response => reloadUser());
 }

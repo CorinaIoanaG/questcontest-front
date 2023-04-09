@@ -13,8 +13,8 @@ const AddQuest: FC<AddQuestProps> = ({reloadUser, user}) => {
     const [qQuest,setQQuest] = useState<string>();
     const [qAnswer,setQAnswer] = useState<string>();
 
-function save() {
-    axios.post("http://localhost:8080/quest/" + user.id + "/quest",
+function save(): void {
+    axios.post('http://localhost:8080/quest/' + user.id + '/quest',
         { badge: qBadge, quest: qQuest, answer: qAnswer})
         .then(response => {
             reloadUser();});
@@ -23,8 +23,8 @@ function save() {
 
 return  <Box>
             <Typography sx={{margin: 1}}>Add Quest</Typography>
-            <TextField sx= {{margin:1}} label="Badge" value={qBadge} onChange={(e) => setQBadge(e.target.value as unknown as number)}></TextField>
-            <TextField sx= {{margin:1}} label="Quest" value={qQuest} onChange={(e) => setQQuest(e.target.value)}></TextField>
+            <TextField sx= {{margin:1}} label="Badge - max your own badge" value={qBadge} onChange={(e) => setQBadge(e.target.value as unknown as number)}></TextField>
+            <TextField sx= {{margin:1}} label="Quest Description" value={qQuest} onChange={(e) => setQQuest(e.target.value)}></TextField>
             <TextField sx= {{margin:1}} label="Answer" value={qAnswer} onChange={(e) => setQAnswer(e.target.value)}></TextField>
             <Button variant="contained" onClick={() => save()}>Save</Button> 
         </Box>;
@@ -32,5 +32,3 @@ return  <Box>
 }
 
 export default AddQuest;
-
-
