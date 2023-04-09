@@ -89,7 +89,7 @@ function App() {
             <Button onClick={() => clearSelectedUser()}>LOG OUT</Button>
             <Button sx={{ color: "red" }} onClick={() => deleteUser(selectedUser.id)}>DELETE USER</Button>
           </Card>
-          <Card sx={{ margin: 1, overflow: 'auto', background: 'lightblue', width: 1000}}>
+          <Card sx={{ margin: 1, overflow: 'auto', background: 'lightblue', width: 750}}>
             <AddQuest  user={selectedUser} reloadUser={reloadedSelectedUser}></AddQuest>
           </Card>
           <Card sx={{ margin: 1, overflow: 'auto', background: 'lightblue', width: 1000}}>

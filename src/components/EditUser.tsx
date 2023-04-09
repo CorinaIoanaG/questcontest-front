@@ -22,17 +22,12 @@ const save = () => {
 }
 
     return <Box>
-            <Card sx={{margin:1, overflow:"unset"}}>
-                <CardContent>
-                    <TextField label = "Name" value={uName} onChange={(e)=>setUName(e.target.value)}></TextField>
-                    <TextField label = "Password" value={uPass} onChange={(e)=>setUPass(e.target.value)}></TextField>
-                    <TextField label = "Full Name" value={uFullName} onChange={(e)=>setUFullName(e.target.value)}></TextField>
-                    <TextField label = "Email" value={uEmail} onChange={(e)=>setUEmail(e.target.value)}></TextField>
-                </CardContent>
-            <   CardActions>
-                    <Button variant="contained" onClick={()=>save()}>Save</Button>
-                </CardActions>
-            </Card>
+                <Typography sx={{margin: 1}}>Modify User</Typography>
+                <TextField sx={{margin: 1}} label = "Name" value={uName} onChange={(e)=>setUName(e.target.value)}></TextField>
+                <TextField sx={{margin: 1}} label = "Password" value={uPass} onChange={(e)=>setUPass(e.target.value)}></TextField>
+                <TextField sx={{margin: 1}} label = "Full Name" value={uFullName} onChange={(e)=>setUFullName(e.target.value)}></TextField>
+                <TextField sx={{margin: 1}} label = "Email" value={uEmail} onChange={(e)=>setUEmail(e.target.value)}></TextField>
+                <Button variant="contained" onClick={()=>save()}>Save</Button>  
             </Box>
 }
 
