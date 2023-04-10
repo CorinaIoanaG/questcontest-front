@@ -30,7 +30,7 @@ function App() {
   }
 
   const logInUser = () => {
-    axios.get('http://localhost:8080/quest/log?name='+lName+'&pass='+lPass)
+    axios.get(`http://localhost:8080/quest/log?name=${lName}&pass=${lPass}`)
     .then((response) => setSelectedUser(response.data));
   }
 
@@ -39,7 +39,7 @@ function App() {
   }
 
   const reloadUser = (id: number) => {
-    axios.get('http://localhost:8080/quest/' + id).then((response) => setSelectedUser(response.data));
+    axios.get(`http://localhost:8080/quest/${id}`).then((response) => setSelectedUser(response.data));
   }
 
   const reloadedSelectedUser = () =>{
@@ -47,7 +47,7 @@ function App() {
   }
 
   const deleteUser = (id: number) => {
-    axios.delete('http://localhost:8080/quest/' + id).then((response) => {
+    axios.delete(`http://localhost:8080/quest/${id}`).then((response) => {
       setSelectedUser(undefined); 
       window.location.reload();}
     );
@@ -85,26 +85,26 @@ function App() {
           <Button sx={{margin: 1}} onClick={()=>getSortedUsers()}>CURRENT RANKINGS</Button>
           {sortedUsers?.map(user=>
           <Card sx={{margin: 1, cursor: "pointer"}}>
-              <Typography>{user.ranking} {user.fullName} </Typography>
+              <Typography>{user.ranking} - {user.fullName} - {user.tokens} tokens </Typography>
           </Card>
         )}
         </Card>
       </Box>}
       {selectedUser?.name != null && <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-          <Card sx={{ margin: 1, overflow: 'auto', background: 'lightblue', width: 900}}>
+          <Card sx={{ margin: 3, overflow: 'auto', background: 'lightblue', width: 1000}}>
             <Typography sx={{ fontSize: 18 }}>Full Name: {selectedUser.fullName} </Typography>
-            <Typography sx={{ fontSize: 14 }}>BADGE: {selectedUser.badge} </Typography>
+            <Typography sx={{ fontSize: 14 }}>BADGE: Level {selectedUser.level} </Typography>
             <Typography sx={{ fontSize: 14 }}>TOKENS: {selectedUser.tokens} </Typography>
             <Button onClick={() => clearSelectedUser()}>LOG OUT</Button>
             <Button sx={{ color: "red" }} onClick={() => deleteUser(selectedUser.id)}>DELETE USER</Button>
           </Card>
-          <Card sx={{ margin: 1, overflow: 'auto', background: 'lightblue', width: 750}}>
+          <Card sx={{ margin: 3, overflow: 'auto', background: 'lightblue', width: 750}}>
             <AddQuest  user={selectedUser} reloadUser={reloadedSelectedUser}></AddQuest>
           </Card>
-          <Card sx={{ margin: 1, overflow: 'auto', background: 'lightblue', width: 700}}>
+          <Card sx={{ margin: 3, overflow: 'auto', background: 'lightblue', width: 750}}>
             <ResolveQuest user={selectedUser} reloadUser={reloadedSelectedUser}></ResolveQuest>
           </Card>
-          <Card sx={{ margin: 1, overflow: 'auto', background: 'lightblue', width: 1000}}>
+          <Card sx={{ margin: 3, overflow: 'auto', background: 'lightblue', width: 1000}}>
             <EditUser user={selectedUser} reloadUser={reloadedSelectedUser}></EditUser>
           </Card> 
       </Box>}

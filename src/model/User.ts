@@ -8,7 +8,7 @@ export interface User {
     email: string;
     tokens: number;
     ranking: number;
-    badge: number;
+    level: number;
     quests: Quest[];
     questsanswerd: Quest[];
 }

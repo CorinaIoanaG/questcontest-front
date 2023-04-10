@@ -1,6 +1,9 @@
+import { User } from "./User";
+
 export interface Quest{
     id: number;
-    badge: number;
-    quest: string;
+    tokens: number;
+    questDescription: string;
     answer: string
+    userQuestProposed: User;
  }
