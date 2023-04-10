@@ -15,7 +15,7 @@ const AddQuest: FC<AddQuestProps> = ({reloadUser, user}) => {
 
 function save(): void {
     axios.post(`http://localhost:8080/quest/${user.id}/quest`,
-        { level: qTokens, questDescription: qQuest, answer: qAnswer})
+        { tokens: qTokens, questDescription: qQuest, answer: qAnswer})
         .then(response => {
             reloadUser();});
 

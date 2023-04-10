@@ -93,7 +93,7 @@ function App() {
       {selectedUser?.name != null && <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
           <Card sx={{ margin: 3, overflow: 'auto', background: 'lightblue', width: 1000}}>
             <Typography sx={{ fontSize: 18 }}>Full Name: {selectedUser.fullName} </Typography>
-            <Typography sx={{ fontSize: 14 }}>BADGE: Level {selectedUser.level} </Typography>
+            <Typography sx={{ fontSize: 14 }}>BADGE: Level {selectedUser.badge} </Typography>
             <Typography sx={{ fontSize: 14 }}>TOKENS: {selectedUser.tokens} </Typography>
             <Button onClick={() => clearSelectedUser()}>LOG OUT</Button>
             <Button sx={{ color: "red" }} onClick={() => deleteUser(selectedUser.id)}>DELETE USER</Button>
