@@ -22,7 +22,7 @@ function save(): void {
 }
 
 return  <Box>
-            <Typography sx={{margin: 1}}>Add Quest</Typography>
+            <Typography sx={{margin: 1}}>ADD QUEST</Typography>
             <TextField sx= {{margin:1}} label="Tokens: 1 to your level" value={qTokens} onChange={(e) => setQTokens(e.target.value as unknown as number)}></TextField>
             <TextField sx= {{margin:1}} label="Quest Description" value={qQuest} onChange={(e) => setQQuest(e.target.value)}></TextField>
             <TextField sx= {{margin:1}} label="Answer" value={qAnswer} onChange={(e) => setQAnswer(e.target.value)}></TextField>

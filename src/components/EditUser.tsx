@@ -22,7 +22,7 @@ const save = () => {
 }
 
     return <Box>
-                <Typography sx={{margin: 1}}>Modify User</Typography>
+                <Typography sx={{margin: 1}}>MODIFY USER</Typography>
                 <TextField sx={{margin: 1}} label = "Name" value={uName} onChange={(e)=>setUName(e.target.value)}></TextField>
                 <TextField sx={{margin: 1}} label = "Password" value={uPass} onChange={(e)=>setUPass(e.target.value)}></TextField>
                 <TextField sx={{margin: 1}} label = "Full Name" value={uFullName} onChange={(e)=>setUFullName(e.target.value)}></TextField>
