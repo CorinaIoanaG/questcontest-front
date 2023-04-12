@@ -29,8 +29,7 @@ return  <Box>
             {(selectedQuest?.questDescription != null) && <Card sx={{margin: 1, cursor: 'pointer', background: 'lightblue'}}>
                 <Typography sx={{ fontSize: 16 }}>Quest: {selectedQuest.questDescription}</Typography>
                 <TextField label="Answer" value={qAnswer} onChange={(e) => setQAnswer(e.target.value)}></TextField>
-                <Button variant="contained" onClick={() => {save(); setSelectedQuest(undefined); setQAnswer('');}}>Save</Button>
-                <Typography>Proposed by user with id: {selectedQuest.id}</Typography> 
+                <Button variant="contained" onClick={() => {save(); setSelectedQuest(undefined); setQAnswer('');reloadUser()}}>Save</Button>
                 <Typography>Tokens for answer: {selectedQuest.tokens}</Typography> 
             </Card>}
         </Box>;
